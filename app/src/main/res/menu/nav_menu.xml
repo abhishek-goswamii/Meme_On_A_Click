@@ -13,6 +13,10 @@
         android:icon="@drawable/info"
         android:title="Developer Info"
         />
+    <item android:id="@+id/rate"
+        android:icon="@drawable/rate"
+        android:title="Rate"
+        />
 
 
 

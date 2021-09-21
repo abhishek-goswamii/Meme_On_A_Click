@@ -2,19 +2,21 @@ package com.ag.memeonaclick
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.app.ActivityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.android.volley.Request
 import com.android.volley.Response
@@ -27,7 +29,7 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.gms.ads.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.ByteArrayOutputStream
+import java.io.*
 
 var imageurl: String? = null
 
@@ -45,31 +47,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        //---------------->>>>>>>--------------ad code
 
 
         loadbannerad()
-
-
-        //------------------>>>>>>>--------------ad code
-
-
-
-
-
-
-
-
 
         loadmeme()
 
 
 
-
-
-
-
-        // <-------navigation drawer activity starts from here ------>
+        // <-------navigation drawer activity from here ------>
 
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerlayout)
         val navView : NavigationView = findViewById(R.id.navview)
@@ -89,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.savedmeme -> Toast.makeText(applicationContext , "saved menu clicked" , Toast.LENGTH_SHORT).show()
                 R.id.devinfo -> Intent(this , DeveloperInfo ::class.java).also { startActivity(it) }
+                R.id.rate -> Toast.makeText(applicationContext , "rate clicked" , Toast.LENGTH_SHORT).show()
 
             }
 
@@ -247,14 +234,77 @@ class MainActivity : AppCompatActivity() {
 
     fun nextbtn(view: android.view.View) {
         loadmeme()
+
+    }
+
+    //savebtn
+
+
+    fun savebtn(view: android.view.View) {
+
+        saveimage()
+        requestpermission()
+
+
+
     }
 
 
+    //checking runtime storage permission from here
+
+    private fun haspermisson() : Boolean {
+        return ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+
+    }
+
+    private fun requestpermission(){
+        var permission = mutableListOf<String>()
+
+        if(!haspermisson()){
+            permission.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+
+        if(permission.isNotEmpty()){
+            ActivityCompat.requestPermissions(this , permission.toTypedArray() , 0)
+        }
+    }
+
+    private fun saveimage(){
+        requestpermission()
+        getStorageDir()
+
+
+//        val dir: File =  File (Environment.getExternalStorageDirectory().toString() , "SaveImage")
 
 
 
+    }
 
 
+    fun getStorageDir() {
+
+        val folderName = "Meme On A Click"
+        val folder = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+            folderName
+        )
+
+
+        if (!folder.exists()) {
+
+            folder.mkdirs()
+
+            if(!folder.mkdirs()){
+                Toast.makeText(this , "Enable storage permission manually" , Toast.LENGTH_SHORT).show()
+
+            }
+
+
+        }
+
+    }
+
+    
 
 
 }
