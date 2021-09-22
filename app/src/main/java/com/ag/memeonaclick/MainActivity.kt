@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.android.volley.Request
 import com.android.volley.Response
@@ -47,11 +49,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+        requestpermission() //runtime permission
 
+        getStorageDir() //creating dir
 
-        loadbannerad()
+        loadbannerad() //ad
 
-        loadmeme()
+        loadmeme() //api call
 
 
 
@@ -73,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
             when(it.itemId){
 
-                R.id.savedmeme -> Toast.makeText(applicationContext , "saved menu clicked" , Toast.LENGTH_SHORT).show()
+                R.id.savedmeme -> savedintent()
                 R.id.devinfo -> Intent(this , DeveloperInfo ::class.java).also { startActivity(it) }
                 R.id.rate -> Toast.makeText(applicationContext , "rate clicked" , Toast.LENGTH_SHORT).show()
 
@@ -233,24 +237,20 @@ class MainActivity : AppCompatActivity() {
     //nextbtn
 
     fun nextbtn(view: android.view.View) {
+
         loadmeme()
+
+        Toast.makeText(this, "loading" , Toast.LENGTH_SHORT).show()
 
     }
 
     //savebtn
 
 
-    fun savebtn(view: android.view.View) {
-
-        saveimage()
-        requestpermission()
 
 
 
-    }
-
-
-    //checking runtime storage permission from here
+    // runtime storage permission from here
 
     private fun haspermisson() : Boolean {
         return ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
@@ -269,12 +269,48 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
+    //btn func
+
+
+
+    fun savebtn(view: android.view.View) {
+
+//        requestpermission() //runtime permission
+//        getStorageDir() //creating dir
+
+        Toast.makeText(this, "Saved Inside DCIM/Meme On A Click", Toast.LENGTH_SHORT).show()
+
+
+        saveimage() //bitmap image
+
+
+
+    }
+
     private fun saveimage(){
-        requestpermission()
-        getStorageDir()
+
+        //>>>>>>>>>>>>>>>>>>>>>>>>
+
+        val draw = memeimage.getDrawable() as BitmapDrawable
+        val bitmap = draw.bitmap
+
+        var outStream: FileOutputStream? = null
+        val sdCard = Environment.getExternalStorageDirectory()
+        val dir = File(sdCard.absolutePath.toString() + "/DCIM/Meme On A Click")
+
+        val fileName = String.format("%d.jpg", System.currentTimeMillis())
 
 
-//        val dir: File =  File (Environment.getExternalStorageDirectory().toString() , "SaveImage")
+        val outFile = File(dir, fileName)
+        outStream = FileOutputStream(outFile)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+        outStream.flush()
+        outStream.close()
+
+
+
 
 
 
@@ -304,7 +340,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    
+
+    fun savedintent(){
+
+        val selectedUri: Uri = Uri.parse(Environment.getExternalStorageDirectory().toString() + "/DCIM/Meme On A Click/")
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(selectedUri, "resource/folder")
+        startActivity(intent)
+
+    }
+
+    fun memeimgclick(view: android.view.View) {
+        loadmeme()
+
+    }
 
 
 }
