@@ -2,6 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/averia_sans_libre_light</item>
+        <item>@font/cambo</item>
+        <item>@font/pontano_sans</item>
         <item>@font/raleway_semibold</item>
     </array>
 </resources>

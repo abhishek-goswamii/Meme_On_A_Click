@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bgimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/bg" />
+
+    <Button
+        android:id="@+id/gitbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="388dp"
+        android:backgroundTint="#34E6E5E5"
+        android:onClick="github"
+
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="Go To Github Repository"
+        android:textColor="#B7000000"
+        app:layout_constraintBottom_toBottomOf="@+id/bgimg"
+        app:layout_constraintEnd_toEndOf="@+id/bgimg"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <in.codeshuffle.typewriterview.TypeWriterView
+        android:id="@+id/animatedtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#B7000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgimg" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#34E6E5E5"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:onClick="mail"
+        android:text="Give Feedback"
+        android:textColor="#B7000000"
+        app:layout_constraintBottom_toTopOf="@+id/gitbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

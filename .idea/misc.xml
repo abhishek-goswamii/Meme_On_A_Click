@@ -5,16 +5,18 @@
       <map>
         <entry key="app/src/main/res/drawable/btn_background.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/info.xml" value="0.26875" />
+        <entry key="app/src/main/res/drawable/link.xml" value="0.1935185185185185" />
         <entry key="app/src/main/res/drawable/next_img.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/rate.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/report_bug.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/save.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/save_img.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/share_img.xml" value="0.26875" />
-        <entry key="app/src/main/res/layout/activity_developer_info.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/activity_developer_info.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_saved.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/devinfo.xml" value="0.21766561514195584" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.22" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.33" />
       </map>

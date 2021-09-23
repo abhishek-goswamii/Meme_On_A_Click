@@ -37,9 +37,6 @@ var imageurl: String? = null
 
 class MainActivity : AppCompatActivity() {
 
-
-
-
     lateinit var  toggle : ActionBarDrawerToggle
 
     lateinit var mAdView : AdView
@@ -48,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val title = "Home"
+
+        this.setTitle(title)
 
         requestpermission() //runtime permission
 
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.savedmeme -> savedintent()
                 R.id.devinfo -> Intent(this , DeveloperInfo ::class.java).also { startActivity(it) }
-                R.id.rate -> Toast.makeText(applicationContext , "rate clicked" , Toast.LENGTH_SHORT).show()
+                R.id.rate -> playstorelink()
 
             }
 
@@ -87,17 +88,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         //ends
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
@@ -132,33 +122,18 @@ class MainActivity : AppCompatActivity() {
 
 
     //api from here
-//
-//
-// <------------------------------------------------------------------------------------------->
 
-
-
-
-    //load meme
 
     private fun loadmeme(){
 
         pbar.visibility = View.VISIBLE
 
-// ...
-
-// Instantiate the RequestQueue.
-
-
-        //later
+// Instantiate the RequestQueue
 //        val queue = Volley.newRequestQueue(this)
         val url = "https://meme-api.herokuapp.com/gimme"
-
-// Request a string response from the provided URL.
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null ,
             Response.Listener { response ->
-                // Display the first 500 characters of the response string.
                 imageurl  = response.getString("url")
 
 
@@ -190,15 +165,10 @@ class MainActivity : AppCompatActivity() {
             },
             Response.ErrorListener {  })
 
-// Add the request to the RequestQueue.
-
-        //later
 //        queue.add(jsonObjectRequest)
 
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
-
-    // share btn
 
     fun sharebtn(view: android.view.View) {
 
@@ -208,14 +178,6 @@ class MainActivity : AppCompatActivity() {
         share.type = "image/*"
         share.putExtra(Intent.EXTRA_STREAM , getimageurl(this , image!! ))
         startActivity(Intent.createChooser(share , "share via"))
-//
-//        val intent  = Intent(Intent.ACTION_SEND)
-//        intent.type = "text/plain"
-//        intent.putExtra(Intent.EXTRA_TEXT , imageurl)
-//        val chooser = Intent.createChooser(intent , "Share this meme link using...")
-//        startActivity(chooser)
-
-
 
     }
 
@@ -234,8 +196,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //nextbtn
-
     fun nextbtn(view: android.view.View) {
 
         loadmeme()
@@ -244,13 +204,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //savebtn
 
-
-
-
-
-    // runtime storage permission from here
+    // runtime storage permission
 
     private fun haspermisson() : Boolean {
         return ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
@@ -270,18 +225,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    //btn func
-
-
-
     fun savebtn(view: android.view.View) {
 
-//        requestpermission() //runtime permission
-//        getStorageDir() //creating dir
-
         Toast.makeText(this, "Saved Inside DCIM/Meme On A Click", Toast.LENGTH_SHORT).show()
-
 
         saveimage() //bitmap image
 
@@ -308,11 +254,6 @@ class MainActivity : AppCompatActivity() {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
         outStream.flush()
         outStream.close()
-
-
-
-
-
 
     }
 
@@ -353,6 +294,13 @@ class MainActivity : AppCompatActivity() {
     fun memeimgclick(view: android.view.View) {
         loadmeme()
 
+    }
+
+    fun playstorelink(){
+        val url = "https://play.google.com/store/apps"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
     }
 
 
