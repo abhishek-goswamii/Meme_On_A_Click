@@ -4,12 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-<!--    <uses-permission-->
-<!--        android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
-<!--        android:maxSdkVersion="28" />-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -18,11 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MemeOnAClick">
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
-
+        <activity
+            android:name=".Policy"
+            android:exported="true" />
         <activity
             android:name=".DeveloperInfo"
             android:exported="true" />
@@ -37,8 +30,8 @@
         </activity>
 
         <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3516300931863657~2705223924" />
     </application>
 
 </manifest>

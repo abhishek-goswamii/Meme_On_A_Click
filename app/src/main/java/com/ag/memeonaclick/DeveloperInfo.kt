@@ -17,7 +17,7 @@ class DeveloperInfo : AppCompatActivity() {
 
         this.setTitle(title)
 
-        val appinfo = "This application developed natively in android studio for more information there is Repository Link."
+        val appinfo = "This application is developed natively in android studio, for more information there is Repository Link."
 
 
         val TypeWriterView = findViewById<TypeWriterView>(R.id.animatedtxt)
@@ -25,11 +25,6 @@ class DeveloperInfo : AppCompatActivity() {
         TypeWriterView.setWithMusic(false)
         TypeWriterView.setDelay(10)
         TypeWriterView.animateText(appinfo)
-
-
-
-
-
 
 
     }
@@ -52,5 +47,12 @@ class DeveloperInfo : AppCompatActivity() {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "feedback")
 
         startActivity(Intent.createChooser(emailIntent, "Send email..."))
+    }
+
+    fun policy(view: android.view.View) {
+
+        val intent =  Intent(this , Policy::class.java)
+
+        startActivity(intent)
     }
 }

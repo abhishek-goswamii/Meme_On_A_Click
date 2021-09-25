@@ -90,6 +90,18 @@ class MainActivity : AppCompatActivity() {
         //ends
 
 
+
+        mAdView.adListener = object: AdListener() {
+
+            override fun onAdFailedToLoad(adError : LoadAdError) {
+                // Code to be executed when an ad request fails.
+
+                Toast.makeText(this@MainActivity , "$adError" , Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
     }
 
     private fun loadbannerad() {
@@ -103,6 +115,8 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
 
 
     // <-------navigation drawer activity starts from here ------>
