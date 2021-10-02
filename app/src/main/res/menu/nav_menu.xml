@@ -11,7 +11,7 @@
 
     <item android:id="@+id/devinfo"
         android:icon="@drawable/info"
-        android:title="Developer Info"
+        android:title="Info"
         />
     <item android:id="@+id/rate"
         android:icon="@drawable/rate"

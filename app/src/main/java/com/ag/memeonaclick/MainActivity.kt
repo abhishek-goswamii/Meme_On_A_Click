@@ -230,7 +230,9 @@ class MainActivity : AppCompatActivity() {
         var permission = mutableListOf<String>()
 
         if(!haspermisson()){
+            Toast.makeText(this , "storage permission is just for saving user favorite memes inside the storage" , Toast.LENGTH_LONG).show()
             permission.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
         }
 
         if(permission.isNotEmpty()){

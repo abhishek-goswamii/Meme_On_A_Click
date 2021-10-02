@@ -9,13 +9,18 @@ import android.widget.TextView
 
 
 class DeveloperInfo : AppCompatActivity() {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.devinfo)
 
-        val title = "Developer Info"
 
-        this.setTitle(title)
+
+        supportActionBar!!.title = "Info"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
 
         val appinfo = "This application is developed natively in android studio, for more information there is Repository Link."
 
@@ -27,6 +32,11 @@ class DeveloperInfo : AppCompatActivity() {
         TypeWriterView.animateText(appinfo)
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true;
     }
 
     fun github(view: android.view.View) {
